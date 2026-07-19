@@ -16,7 +16,7 @@ dtype = {
     "PULocationID": "Int64",
     "DOLocationID": "Int64",
     "payment_type": "Int64",
-    "fare_amoount": "float64",
+    "fare_amount": "float64",
     "extra": "float64",
     "mta_tax": "float64",
     "tip_amount":"float64",
@@ -42,8 +42,6 @@ parse_dates = [
 @click.option('--pg-db', default='ny_taxi', help='PostgreSQL database')
 @click.option('--chunk-size', default=100000, type=int, help='Chunk size for reading CSV')
 @click.option('--target-table', default='yellow_taxi_data', help='Target table name')
-
-
 def run(year, month, pg_user, pg_password, pg_host, pg_port, pg_db, chunk_size, target_table):
     prefix = 'https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow'
     url = f'{prefix}/yellow_tripdata_{year}-{month:02d}.csv.gz'
