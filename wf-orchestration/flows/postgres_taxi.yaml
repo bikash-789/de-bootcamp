@@ -39,10 +39,12 @@ tasks:
     type: io.kestra.plugin.scripts.shell.Commands
     outputFiles:
       - "*.csv"
+    taskCache:
+      enabled: true
     taskRunner:
       type: io.kestra.plugin.core.runner.Process
     commands:
-      - wget -qO- https://github.com/DataTalksClub/nyc-tlc-data/releases/download/{{inputs.taxi}}/{{render(vars.file)}}.gz | gunzip > {{render(vars.file)}}
+      - curl -L https://github.com/DataTalksClub/nyc-tlc-data/releases/download/{{inputs.taxi}}/{{render(vars.file)}}.gz | gunzip > {{render(vars.file)}}
 
   - id: if_yellow_taxi
     type: io.kestra.plugin.core.flow.If
