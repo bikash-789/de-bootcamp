@@ -49,7 +49,9 @@ services:
       retries: 10
 
   kestra:
-    image: kestra/kestra:latest
+    image: kestra/kestra:v1.1
+    env_file:
+      - .env
     pull_policy: always
     user: "root"
     command: server standalone
